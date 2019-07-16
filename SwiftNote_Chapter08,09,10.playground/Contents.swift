@@ -72,6 +72,57 @@ class Sector {
     
     convenience init(r: Double, degree: Double) {
         let radian = degree * Double.pi / 180.0
-        
+        self.init(r: r, radian: radian)
     }
 }
+
+let sectorInit = Sector(r: 2, radian: .pi / 4)
+let sectorConvinience = Sector(r: 2, degree: 45)
+
+// 指定イニシャライザ
+print(sectorInit.rad)
+//コンビニエンスイニシャライザ
+print(sectorConvinience.rad)
+0.7853981633974483
+0.7853981633974483
+
+
+// Computed プロパティとプロパティオブサーバ
+
+class Circle {
+    var radius: Double = 1.0
+    
+    var area: Double {
+        get {
+            return radius * radius * Double.pi
+        }
+        
+        set(menseki) {
+            radius = sqrt(menseki / Double.pi)
+        }
+    }
+    
+    // リードオンリープロパティ
+    var test: Double {
+        return 3
+    }
+    
+    
+    
+    
+}
+
+let myCircle  = Circle()
+
+print("半径\(myCircle.radius)")
+//半径1.0
+print("面積\(myCircle.area)")
+//面積3.141592653589793
+
+
+myCircle.area *= 2
+
+print("半径\(myCircle.radius)")
+//半径1.4142135623730951
+print("面積\(myCircle.area)")
+//面積6.283185307179588
